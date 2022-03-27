@@ -27,7 +27,7 @@ const TuitStats = ({tuit, likeTuit = () => {}}) => {
             {tuit.stats && tuit.stats.likes}
             
           </span>
-          </div>
+          
           {/* dislike button */}
           <div className="col">
           <span onClick={() => likeTuit(tuit)}>
@@ -44,7 +44,6 @@ const TuitStats = ({tuit, likeTuit = () => {}}) => {
             
           </span>
         </div>
-
         <div className="col">
           <i className="far fa-inbox-out"></i>
         </div>
