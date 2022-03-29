@@ -19,6 +19,7 @@ export const findAllUsersThatDislikedTuit = (tid) =>
         .then(response => response.data);
 
 export const userDislikesTuit = (uid, tid) =>{
+    console.log("react arrive dislike");
     return api.put(`${USERS_API}/${uid}/dislikes/${tid}`)
         .then(response => response.data);
     }

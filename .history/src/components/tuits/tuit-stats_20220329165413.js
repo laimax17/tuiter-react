@@ -14,39 +14,35 @@ const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
     },[])
 
     const checkLike = async() => {
-      const userLiked = await likeService.userHasLikedTuit("me",tuit._id);
-
-      if (!userLiked) {
-        setHasLike(false);
-        
-      }else{
+      const userLiked = likeService.userHasLikedTuit("me",tuit._id);
+      if (userLiked) {
         setHasLike(true);
-        
+        // setHasDisliked(false);
+      }else{
+        setHasLike(false);
       }
     }
 
     const checkDislike = async() => {
-      const userDisliked = await dislikeService.userHasDislikedTuit("me",tuit._id);
-
-      if (!userDisliked){
-        setHasDisliked(false);
-       
-      }else{
+      const userDisliked = dislikeService.userHasDislikedTuit("me",tuit._id);
+      if (userDisliked){
         setHasDisliked(true);
-       
+        // setHasLike(false);
+      }else{
+        setHasDisliked(false);
       }
     }
 
     const clickOnLike = async() => {
-      await likeTuit(tuit);
-      await checkLike();
-      await checkDislike();
+      likeTuit(tuit);
+      checkLike();
+      checkDislike();
     }
 
     const clickOnDislike = async() => {
-      await dislikeTuit(tuit);
-      await checkLike();
-      await checkDislike();
+      dislikeTuit(tuit);
+      checkLike();
+      checkDislike();
     }
     return (
       <div className="row mt-2">
@@ -63,7 +59,7 @@ const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
         <div className="col">
           <span onClick={() => clickOnLike()}>
               {
-                hasLiked ? (
+                !hasLiked ? (
                   <i className="fa-solid fa-thumbs-up"></i>
                 ) : (
                   <i className="fa-regular fa-thumbs-up"></i>
@@ -79,7 +75,7 @@ const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
           <div className="col">
           <span onClick={() => clickOnDislike()}>
               {
-                hasDisliked ? (
+                !hasDisliked ? (
                   <i class="fa-solid fa-thumbs-down"></i>
                 ) : (
                   <i class="fa-regular fa-thumbs-down"></i>

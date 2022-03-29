@@ -15,25 +15,27 @@ const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
 
     const checkLike = async() => {
       const userLiked = await likeService.userHasLikedTuit("me",tuit._id);
-
+      // console.log("userliked");
+      // console.log(userLiked);
       if (!userLiked) {
         setHasLike(false);
-        
+        //setHasDisliked(false);
       }else{
         setHasLike(true);
-        
+        //setHasDisliked(false);
       }
     }
 
     const checkDislike = async() => {
       const userDisliked = await dislikeService.userHasDislikedTuit("me",tuit._id);
-
+      // console.log("userdisliked");
+      // console.log(userDisliked);
       if (!userDisliked){
         setHasDisliked(false);
-       
+        //setHasLike(false);
       }else{
         setHasDisliked(true);
-       
+        //setHasLike(false);
       }
     }
 

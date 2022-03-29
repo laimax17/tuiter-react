@@ -11,42 +11,38 @@ const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
     useEffect(() => {
       checkLike();
       checkDislike();
-    },[])
+    })
 
     const checkLike = async() => {
-      const userLiked = await likeService.userHasLikedTuit("me",tuit._id);
-
+      const userLiked = likeService.userHasLikedTuit("me",tuit._id);
       if (!userLiked) {
         setHasLike(false);
-        
+        // setHasDisliked(false);
       }else{
         setHasLike(true);
-        
       }
     }
 
     const checkDislike = async() => {
-      const userDisliked = await dislikeService.userHasDislikedTuit("me",tuit._id);
-
+      const userDisliked = dislikeService.userHasDislikedTuit("me",tuit._id);
       if (!userDisliked){
         setHasDisliked(false);
-       
+        // setHasLike(false);
       }else{
         setHasDisliked(true);
-       
       }
     }
 
     const clickOnLike = async() => {
-      await likeTuit(tuit);
-      await checkLike();
-      await checkDislike();
+      likeTuit(tuit);
+      checkLike();
+      checkDislike();
     }
 
     const clickOnDislike = async() => {
-      await dislikeTuit(tuit);
-      await checkLike();
-      await checkDislike();
+      dislikeTuit(tuit);
+      checkLike();
+      checkDislike();
     }
     return (
       <div className="row mt-2">
