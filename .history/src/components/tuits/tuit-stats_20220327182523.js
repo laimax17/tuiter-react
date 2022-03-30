@@ -1,0 +1,54 @@
+import React from "react";
+
+const TuitStats = ({tuit, likeTuit = () => {}}) => {
+    return (
+      <div className="row mt-2">
+        <div className="col">
+          <i className="far fa-message me-1"></i>
+          {tuit.stats && tuit.stats.replies}
+        </div>
+        <div className="col">
+          <i className="far fa-retweet me-1"></i>
+          {tuit.stats && tuit.stats.retuits}
+        </div>
+
+        {/* like button */}
+        <div className="col">
+          <span onClick={() => likeTuit(tuit)}>
+              {
+                tuit.stats && tuit.stats.likes && tuit.stats.likes > 0 ? (
+                  <i className="fa-solid fa-thumbs-up"></i>
+                ) : (
+                  <i className="fa-regular fa-thumbs-up"></i>
+                )
+              
+              }
+              
+            {tuit.stats && tuit.stats.likes}
+            
+          </span>
+          </div>
+          {/* dislike button */}
+          <div className="col">
+          <span onClick={() => likeTuit(tuit)}>
+              {
+                tuit.stats && tuit.stats.likes && tuit.stats.likes > 0 ? (
+                  <i class="fa-solid fa-thumbs-down"></i>
+                ) : (
+                  <i class="fa-regular fa-thumbs-down"></i>
+                )
+              
+              }
+              
+            {tuit.stats && tuit.stats.likes}
+            
+          </span>
+        </div>
+
+        <div className="col">
+          <i className="far fa-inbox-out"></i>
+        </div>
+      </div>
+    );
+}
+export default TuitStats;

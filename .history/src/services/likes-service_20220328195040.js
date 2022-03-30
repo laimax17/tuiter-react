@@ -22,14 +22,10 @@ export const userLikesTuit = (uid, tid) =>
     api.put(`${USERS_API}/${uid}/likes/${tid}`)
         .then(response => response.data);
 
-/**
- * 
- * @param {string} uid user id
- * @param {string} tid tuit id
- * @returns if a user has liked the tuit, it returns a like object
- */
-export const userHasLikedTuit = (uid,tid) =>  {
-    return api.get(`${USERS_API}/${uid}/hasLiked/${tid}`)
-    .then(response => response.data);
-}
-    
+export const userHasLikedTuit = (uid,tid) => 
+    api.get(`${USERS_API}/${uid}/hasLiked/${tid}`)
+        .then(response => response.data);
+
+export const userHasDislikedTuit = (uid,tid) => 
+    api.get(`${USERS_API}/${uid}/hasDisliked/${tid}`)
+        .then(response => response.data);

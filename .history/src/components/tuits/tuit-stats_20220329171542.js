@@ -4,9 +4,6 @@ import * as dislikeService from "../../services/dislikes-service";
 
 const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
 
-    /**
-     * Use useState and useEffect to change like button and dislike button status.
-     */
     const [hasLiked, setHasLike] = useState(null);
 
     const [hasDisliked, setHasDisliked] = useState(null);
@@ -16,9 +13,6 @@ const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
       checkDislike();
     },[])
 
-    /**
-     * Check if a tuit has been liked by user or not.
-     */
     const checkLike = async() => {
       const userLiked = await likeService.userHasLikedTuit("me",tuit._id);
 
@@ -31,9 +25,6 @@ const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
       }
     }
 
-    /**
-     * Check if a tuit has been disliked by user or not.
-     */
     const checkDislike = async() => {
       const userDisliked = await dislikeService.userHasDislikedTuit("me",tuit._id);
 
@@ -46,24 +37,17 @@ const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
       }
     }
 
-    /**
-     * The onClick function on like button.
-     */
     const clickOnLike = async() => {
       await likeTuit(tuit);
       await checkLike();
       await checkDislike();
     }
 
-     /**
-     * The onClick function on dislike button.
-     */
     const clickOnDislike = async() => {
       await dislikeTuit(tuit);
       await checkLike();
       await checkDislike();
     }
-
     return (
       <div className="row mt-2">
         <div className="col">
@@ -75,7 +59,7 @@ const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
           {tuit.stats && tuit.stats.retuits}
         </div>
 
-        {/** like button */  }
+        {/* like button */}
         <div className="col">
           <span onClick={() => clickOnLike()}>
               {
@@ -91,7 +75,7 @@ const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
             
           </span>
           </div>
-          {/** dislike button */}
+          {/* dislike button */}
           <div className="col">
           <span onClick={() => clickOnDislike()}>
               {

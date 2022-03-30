@@ -4,66 +4,42 @@ import * as dislikeService from "../../services/dislikes-service";
 
 const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
 
-    /**
-     * Use useState and useEffect to change like button and dislike button status.
-     */
-    const [hasLiked, setHasLike] = useState(null);
+    const [hasLiked, setHasLike] = useState(false);
 
-    const [hasDisliked, setHasDisliked] = useState(null);
+    const [hasDisliked, setHasDisliked] = useState(false);
 
     useEffect(() => {
       checkLike();
       checkDislike();
-    },[])
+    })
 
-    /**
-     * Check if a tuit has been liked by user or not.
-     */
     const checkLike = async() => {
-      const userLiked = await likeService.userHasLikedTuit("me",tuit._id);
-
+      const userLiked = likeService.userHasLikedTuit("me",tuit._id);
       if (!userLiked) {
         setHasLike(false);
-        
+        setHasDisliked(false);
       }else{
         setHasLike(true);
-        
       }
     }
 
-    /**
-     * Check if a tuit has been disliked by user or not.
-     */
     const checkDislike = async() => {
-      const userDisliked = await dislikeService.userHasDislikedTuit("me",tuit._id);
-
+      const userDisliked = dislikeService.userHasDislikedTuit("me",tuit._id);
       if (!userDisliked){
         setHasDisliked(false);
-       
+        setHasLike(false);
       }else{
         setHasDisliked(true);
-       
       }
     }
 
-    /**
-     * The onClick function on like button.
-     */
     const clickOnLike = async() => {
-      await likeTuit(tuit);
-      await checkLike();
-      await checkDislike();
+      likeTuit(tuit);
     }
 
-     /**
-     * The onClick function on dislike button.
-     */
     const clickOnDislike = async() => {
-      await dislikeTuit(tuit);
-      await checkLike();
-      await checkDislike();
+      dislikeTuit(tuit);
     }
-
     return (
       <div className="row mt-2">
         <div className="col">
@@ -75,7 +51,7 @@ const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
           {tuit.stats && tuit.stats.retuits}
         </div>
 
-        {/** like button */  }
+        {/* like button */}
         <div className="col">
           <span onClick={() => clickOnLike()}>
               {
@@ -91,7 +67,7 @@ const TuitStats = ({tuit, likeTuit = () => {}, dislikeTuit = () => {}}) => {
             
           </span>
           </div>
-          {/** dislike button */}
+          {/* dislike button */}
           <div className="col">
           <span onClick={() => clickOnDislike()}>
               {
