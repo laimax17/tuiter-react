@@ -1,29 +1,34 @@
 import Tuits from "../tuits";
 import * as service from "../../services/dislikes-service";
 import {useEffect, useState} from "react";
-import { sample } from "../../tests/tuit-dislike.test";
+import sampleTuit from "../tuits/sampleTuit";
 /**
  * find all disliked tuits
- * @returns an array of tuits di
+ * @returns an array of tuits disliked
  */
 const MyDislikes = () => {
     const [dislikedTuits, setDislikedTuits] = useState([]);
     const findTuitsIDislike = () =>
         service.findAllTuitsDislikedByUser("me")
             .then((tuits) => setDislikedTuits(tuits));
+
+    const sample = {
+    tuit: "test tuit",
+    postedBy: "1234abc",
+    postedOn: "2022/12/31",
+    stats: {
+      replies: 1,
+      retuits: 1,
+      likes: 100,
+      dislikes: 100,
+    },
+  };
+
     useEffect(findTuitsIDislike, []);
-    const tuit = sample
     return(
         <div>
             <Tuits tuits={dislikedTuits} refreshTuits={findTuitsIDislike}/>
-
-        <h2
-          className="fs-5">
-          {tuit.postedBy && tuit.postedBy.username}
-          @{tuit.postedBy && tuit.postedBy.username} -
-            <span className="ms-1">{tuit.postedOn}</span></h2>
-        {tuit.tuit}
-   
+            <sampleTuit tuit={sample}></sampleTuit>
       </div>
 
     );
