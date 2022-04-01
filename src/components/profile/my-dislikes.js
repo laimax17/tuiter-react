@@ -1,7 +1,7 @@
 import Tuits from "../tuits";
 import * as service from "../../services/dislikes-service";
 import {useEffect, useState} from "react";
-import sampleTuit from "../tuits/sampleTuit";
+import SampleTuit from "../tuits/sampleTuit";
 /**
  * find all disliked tuits
  * @returns an array of tuits disliked
@@ -28,7 +28,7 @@ const MyDislikes = () => {
     return(
         <div>
             <Tuits tuits={dislikedTuits} refreshTuits={findTuitsIDislike}/>
-            <sampleTuit tuit={sample}></sampleTuit>
+            <SampleTuit tuit={sample}></SampleTuit>
       </div>
 
     );

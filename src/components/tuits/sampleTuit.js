@@ -3,7 +3,7 @@ import TuitStats from "./tuit-stats";
 import TuitImage from "./tuit-image";
 import TuitVideo from "./tuit-video";
 
-const sampleTuit = ({ tuit, deleteTuit, likeTuit, dislikeTuit }) => {
+const SampleTuit = ({ tuit, deleteTuit, likeTuit, dislikeTuit }) => {
   return (
     <li className="p-2 ttr-tuit list-group-item d-flex rounded-0">
       <div className="pe-2">
@@ -32,4 +32,4 @@ const sampleTuit = ({ tuit, deleteTuit, likeTuit, dislikeTuit }) => {
     </li>
   );
 };
-export default sampleTuit;
+export default SampleTuit;
