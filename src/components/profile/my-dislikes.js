@@ -1,7 +1,7 @@
 import Tuits from "../tuits";
 import * as service from "../../services/dislikes-service";
 import {useEffect, useState} from "react";
-import SampleTuit from "../tuits/SampleTuit";
+import SampleTuit from "../tuits/sampleTuit";
 /**
  * find all disliked tuits
  * @returns an array of tuits disliked
